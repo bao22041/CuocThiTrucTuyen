@@ -598,16 +598,16 @@
                 if (res.ok) {
                     const data = await res.json();
                     results = data.map(x => ({ name: x.FullName || x.name, phone: x.Phone || x.phone, area: x.Area || x.area, score: parseInt(x.Score || x.score), timeTaken: parseInt(x.TimeTaken || x.timeTaken) }));
-                    statusText.innerText = "Trạng thái: Máy chủ Đám mây Trực tuyến 🟢";
+                    statusText.innerText = "Trạng thái: 🟢";
                     statusText.style.color = "var(--success)";
                 } else { throw new Error("API lỗi"); }
             } catch (error) {
-                statusText.innerText = "Trạng thái: Cảnh báo! Mất kết nối DB, hiển thị máy Local 🟡";
+                statusText.innerText = "Trạng thái: 🟡";
                 statusText.style.color = "var(--gold)";
                 results = JSON.parse(localStorage.getItem('quiz_data_local')) || [];
             }
         } else {
-            statusText.innerText = "Trạng thái: Đang hoạt động ở chế độ Offline (Cục bộ) 🟡";
+            statusText.innerText = "Trạng thái: 🟡";
             statusText.style.color = "var(--gold)";
             results = JSON.parse(localStorage.getItem('quiz_data_local')) || [];
         }
@@ -646,7 +646,7 @@
     }
 
     async function promptAdminLogin() {
-        showModal("Xác thực Quản trị viên", "Nhập mật khẩu Admin (admin123) để tải dữ liệu hệ thống.", "login", async (isConfirm, pwd) => {
+        showModal("Xác thực Quản trị viên", "Nhập mật khẩu Admin (ĐỐ EM BIẾT)", "login", async (isConfirm, pwd) => {
             if(isConfirm) {
                 if(pwd === "admin123") { await exportToCSV(); } 
                 else { setTimeout(() => showModal("Lỗi xác thực", "Mật khẩu không chính xác!", "alert"), 400); }
